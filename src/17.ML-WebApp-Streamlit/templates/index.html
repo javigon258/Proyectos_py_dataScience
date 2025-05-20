@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Predicción de Vino streamlit</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      padding: 30px;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 25px 40px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #800000;
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #800000;
+      color: white;
+      padding: 10px 20px;
+      margin-top: 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+    .resultado {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f0f8ff;
+      border-left: 5px solid #800000;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Predicción de Calidad del Vino 🍷</h1>
+    <form action="/predict" method="post">
+
+      {% for i in range(1, 12) %}
+        <label for="feature{{ i }}">{{ nombres[i-1] }}</label>
+        <input type="number" name="feature{{ i }}" id="feature{{ i }}" step="any" inputmode="decimal" required>
+      {% endfor %}
+
+      <button type="submit">Predecir</button>
+    </form>
+
+    {% if resultado %}
+      <div class="resultado">
+        {{ resultado }}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
